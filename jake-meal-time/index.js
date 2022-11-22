@@ -1,6 +1,5 @@
 function minutesSinceMidnight(timeStr) {
     let rg = /(\d{1,2})\:(\d{1,2})\s+([ap])\.?m/
-    // console.log(rg.exec(timeStr));
     let [, hour, minute, am] = rg.exec(timeStr);
     hour = Number(hour);
     if (am === 'a' && hour === 12) hour -= 12;
@@ -16,11 +15,8 @@ function minutesToHoursAndMinutes(totalMinutes) {
 
 function timeToEat(timeStr) {
     let currentTime = minutesSinceMidnight(timeStr);
-    console.log("minutesSinceMidnight", currentTime);
     let mealTimes = ['7:00 a.m', '12:00 p.m.', '7:00 p.m.'].map(minutesSinceMidnight);
-    console.log("mealTimes",mealTimes);
     let nextMealTime = mealTimes.find(mealTime => mealTime >= currentTime);
-    
     if (nextMealTime === undefined) {
         return nextMealTime;
     }
@@ -29,4 +25,4 @@ function timeToEat(timeStr) {
 }
 
 console.log(timeToEat("2:00 p.m."));
-console.log(timeToEat("5:50 p.m."));
+console.log(timeToEat("5:50 a.m."));
